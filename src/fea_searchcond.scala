@@ -73,6 +73,7 @@ object fea_searchcond {
     .drop("sid")
     .drop("vid")
     .drop("price")
+
     //searchCondDForm.printSchema()
     //searchCondDForm.take(10).foreach(println)
     //val colHeader = searchCondDForm.columns.mkString(",")
@@ -99,7 +100,11 @@ object fea_searchcond {
     println(fea_seq)
     val fea_DF = fea_result.select(fea_seq.head, fea_seq.tail:_*)
     //fea_DF.show()
-    fea_DF.rdd.take(10).foreach(println)
+    //fea_DF.rdd.take(10).foreach(println)
+    //fea_DF.show(5)
+    println(fea_DF.stat.freqItems(Array("pvid_index","clientcode_index")))
+    // deal the max_min condatitions
+    System.exit(0)
     //val fea_input =
     val fea_Double = fea_DF.rdd.map {
       rowRdd =>
